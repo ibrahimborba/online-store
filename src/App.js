@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import ShoppingCart from './pages/ShoppingCart';
 import ProductsDetails from './pages/ProductsDetails';
@@ -19,7 +19,6 @@ class App extends Component {
     const { target } = event;
     const { value } = target;
     const targetValuesArr = value.split('___');
-    console.log(targetValuesArr);
     const product = {
       id: target.id,
       title: targetValuesArr[0],
@@ -36,50 +35,56 @@ class App extends Component {
         cartProducts: newProducts,
       };
     });
-  }
+  };
 
   render() {
     const { cartProductsIds, cartProducts } = this.state;
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route
-            path="/productsDetails/:id"
-            render={ (props) => (<ProductsDetails
-              { ...props }
-              handleClick={ this.handleClick }
-              cartProducts={ cartProducts }
-            />) }
-          />
-          <Route
-            exact
-            path="/shoppingCart"
-            render={ (props) => (<ShoppingCart
-              { ...props }
-              cartProductsIds={ cartProductsIds }
-              cartProducts={ cartProducts }
-            />) }
-          />
-          <Route
-            exact
-            path="/checkout"
-            render={ (props) => (<Checkout
-              { ...props }
-              cartProductsIds={ cartProductsIds }
-              cartProducts={ cartProducts }
-            />) }
-          />
-          <Route
-            exact
-            path="/"
-            render={ (props) => (<Home
-              { ...props }
-              handleClick={ this.handleClick }
-              cartProducts={ cartProducts }
-            />) }
-          />
-        </Switch>
-      </BrowserRouter>
+      <Switch>
+        <Route
+          path="/productsDetails/:id"
+          render={(props) => (
+            <ProductsDetails
+              {...props}
+              handleClick={this.handleClick}
+              cartProducts={cartProducts}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/shoppingCart"
+          render={(props) => (
+            <ShoppingCart
+              {...props}
+              cartProductsIds={cartProductsIds}
+              cartProducts={cartProducts}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/checkout"
+          render={(props) => (
+            <Checkout
+              {...props}
+              cartProductsIds={cartProductsIds}
+              cartProducts={cartProducts}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/"
+          render={(props) => (
+            <Home
+              {...props}
+              handleClick={this.handleClick}
+              cartProducts={cartProducts}
+            />
+          )}
+        />
+      </Switch>
     );
   }
 }

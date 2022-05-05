@@ -41,7 +41,7 @@ class Home extends Component {
           searchedList: itens.results,
         });
       });
-  }
+  };
 
   onClickSearchButton = async () => {
     this.setState((prevState) => ({
@@ -49,7 +49,7 @@ class Home extends Component {
     }), async () => {
       await this.updateSearchedList();
     });
-  }
+  };
 
   onClickCategory = ({ target }) => {
     this.setState((prevState) => ({
@@ -58,7 +58,7 @@ class Home extends Component {
     }), async () => {
       await this.updateSearchedList();
     });
-  }
+  };
 
   render() {
     const { categories, query, searchedList } = this.state;
@@ -70,13 +70,13 @@ class Home extends Component {
             id="search"
             type="text"
             data-testid="query-input"
-            onChange={ this.onInputChange }
-            value={ query }
+            onChange={this.onInputChange}
+            value={query}
           />
           <button
             type="button"
             data-testid="query-button"
-            onClick={ this.onClickSearchButton }
+            onClick={this.onClickSearchButton}
           >
             Pesquisar
           </button>
@@ -87,7 +87,8 @@ class Home extends Component {
               data-testid="home-initial-message"
             >
               Digite algum termo de pesquisa ou escolha uma categoria.
-            </p>)}
+            </p>
+          )}
         <Link
           to="/shoppingCart"
           data-testid="shopping-cart-button"
@@ -117,10 +118,10 @@ class Home extends Component {
           <p>Categorias</p>
           <ul>
             {categories.map((category) => (
-              <li key={ category.id }>
+              <li key={category.id}>
                 <Categories
-                  category={ category }
-                  handleClick={ this.onClickCategory }
+                  category={category}
+                  handleClick={this.onClickCategory}
                 />
               </li>
             ))}
@@ -132,15 +133,15 @@ class Home extends Component {
           : (
             searchedList.map((item) => (
               <ItemCard
-                key={ item.id }
-                id={ item.id }
-                name={ item.title }
-                image={ item.thumbnail }
-                price={ item.price }
-                avaibleQuant={ item.available_quantity }
-                freeShipping={ item.shipping.free_shipping }
+                key={item.id}
+                id={item.id}
+                name={item.title}
+                image={item.thumbnail}
+                price={item.price}
+                avaibleQuant={item.available_quantity}
+                freeShipping={item.shipping.free_shipping}
                 data-testid="product"
-                handleClick={ handleClick }
+                handleClick={handleClick}
               />
             ))
           )}

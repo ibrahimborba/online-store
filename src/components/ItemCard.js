@@ -11,24 +11,25 @@ class ItemCard extends Component {
       id,
       avaibleQuant,
       freeShipping,
-      handleClick } = this.props;
+      handleClick,
+    } = this.props;
     return (
       <div data-testid="product">
         <Link
-          to={ `/productsDetails/${id}` }
+          to={`/productsDetails/${id}`}
           data-testid="product-detail-link"
         >
           <div>{name}</div>
-          <img src={ image } alt={ name } />
+          <img src={image} alt={name} />
           <div>{price}</div>
           { freeShipping && <p data-testid="free-shipping">Frete Grátis</p>}
         </Link>
         <button
           data-testid="product-add-to-cart"
-          id={ id }
-          value={ `${name}___${price}___${image}___${avaibleQuant}` }
+          id={id}
+          value={`${name}___${price}___${image}___${avaibleQuant}`}
           type="button"
-          onClick={ handleClick }
+          onClick={handleClick}
         >
           Comprar
         </button>

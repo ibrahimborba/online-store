@@ -19,11 +19,7 @@ class Checkout extends Component {
 
   onInputChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
-  }
-
-  deleteProduct = ({ target }) => {
-    console.log(target);
-  }
+  };
 
   render() {
     const {
@@ -32,7 +28,8 @@ class Checkout extends Component {
       cpf,
       phone,
       cep,
-      address } = this.state;
+      address,
+    } = this.state;
     const { cartProducts } = this.props;
 
     return (
@@ -43,12 +40,12 @@ class Checkout extends Component {
         {
           cartProducts.map((product) => (
             <CartItem
-              key={ product.id }
-              id={ product.id }
-              name={ product.title }
-              price={ product.price }
-              image={ product.thumbnail }
-              deleteProduct={ this.deleteProduct }
+              key={product.id}
+              id={product.id}
+              name={product.title}
+              price={product.price}
+              image={product.thumbnail}
+              deleteProduct={this.deleteProduct}
             />
           ))
         }
@@ -69,8 +66,8 @@ class Checkout extends Component {
             label="Nome Completo"
             type="text"
             name="fullname"
-            value={ fullname }
-            onChange={ this.onInputChange }
+            value={fullname}
+            onChange={this.onInputChange}
           />
           <CheckoutInput
             dataTestId="checkout-email"
@@ -79,8 +76,8 @@ class Checkout extends Component {
             label="Email"
             type="email"
             name="email"
-            value={ email }
-            onChange={ this.onInputChange }
+            value={email}
+            onChange={this.onInputChange}
           />
           <CheckoutInput
             dataTestId="checkout-cpf"
@@ -89,8 +86,8 @@ class Checkout extends Component {
             label="CPF"
             type="text"
             name="cpf"
-            value={ cpf }
-            onChange={ this.onInputChange }
+            value={cpf}
+            onChange={this.onInputChange}
           />
           <CheckoutInput
             dataTestId="checkout-phone"
@@ -99,8 +96,8 @@ class Checkout extends Component {
             label="Telefone"
             type="text"
             name="phone"
-            value={ phone }
-            onChange={ this.onInputChange }
+            value={phone}
+            onChange={this.onInputChange}
           />
           <CheckoutInput
             dataTestId="checkout-cep"
@@ -109,8 +106,8 @@ class Checkout extends Component {
             label="CEP"
             type="text"
             name="cep"
-            value={ cep }
-            onChange={ this.onInputChange }
+            value={cep}
+            onChange={this.onInputChange}
           />
           <CheckoutInput
             dataTestId="checkout-address"
@@ -119,8 +116,8 @@ class Checkout extends Component {
             label="Endereço"
             type="text"
             name="address"
-            value={ address }
-            onChange={ this.onInputChange }
+            value={address}
+            onChange={this.onInputChange}
           />
           <button type="button">
             Comprar

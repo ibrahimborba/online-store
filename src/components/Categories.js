@@ -6,10 +6,10 @@ class Categories extends Component {
     const { category, handleClick } = this.props;
     return (
       <button
-        id={ category.id }
+        id={category.id}
         data-testid="category"
         type="button"
-        onClick={ handleClick }
+        onClick={handleClick}
       >
         {category.name}
       </button>

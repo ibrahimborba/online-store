@@ -3,18 +3,20 @@ import PropTypes from 'prop-types';
 
 class CheckoutInput extends Component {
   render() {
-    const { dataTestId, id, htmlFor, type, name, label, value, onChange } = this.props;
+    const {
+      dataTestId, id, htmlFor, type, name, label, value, onChange,
+    } = this.props;
 
     return (
-      <label htmlFor={ htmlFor }>
+      <label htmlFor={htmlFor}>
         { label }
         <input
-          data-testid={ dataTestId }
-          id={ id }
-          type={ type }
-          name={ name }
-          value={ value }
-          onChange={ onChange }
+          data-testid={dataTestId}
+          id={id}
+          type={type}
+          name={name}
+          value={value}
+          onChange={onChange}
         />
       </label>
     );

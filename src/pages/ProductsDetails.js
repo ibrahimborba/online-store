@@ -28,22 +28,25 @@ class ProductsDetails extends Component {
   async componentDidMount() {
     const { match: { params: { id } } } = this.props;
     const pegarApi = await api.getDetailsProducts(id);
-    const { price, thumbnail, title, attributes, shipping } = pegarApi;
+    const {
+      price, thumbnail, title, attributes, shipping,
+    } = pegarApi;
     this.setState({
       price,
       image: thumbnail,
       name: title,
       details: [...attributes],
-      freeShipping: shipping.free_shipping });
+      freeShipping: shipping.free_shipping,
+    });
   }
 
   onClickRating = ({ target }) => {
     this.setState({ rate: Number(target.value) });
-  }
+  };
 
   onInputChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
-  }
+  };
 
   onSubmit = (event) => {
     event.preventDefault();
@@ -59,7 +62,7 @@ class ProductsDetails extends Component {
         savedEval: newEval,
       };
     });
-  }
+  };
 
   render() {
     const {
@@ -72,7 +75,8 @@ class ProductsDetails extends Component {
       rate,
       email,
       description,
-      savedEval } = this.state;
+      savedEval,
+    } = this.state;
     const { handleClick, cartProducts, match: { params: { id } } } = this.props;
     return (
       <div>
@@ -106,26 +110,27 @@ class ProductsDetails extends Component {
           <h3>{price}</h3>
           { freeShipping && <p data-testid="free-shipping">Frete Grátis</p>}
           <img
-            src={ image }
+            src={image}
             alt="imagem do produto"
           />
           { details.map((i) => (
-            <p key={ i.id }>
+            <p key={i.id}>
               {i.name}
               {' '}
               {i.value_name}
-            </p>))}
+            </p>
+          ))}
         </div>
         <button
           data-testid="product-detail-add-to-cart"
-          id={ id }
-          value={ `${name}___${price}___${image}` }
+          id={id}
+          value={`${name}___${price}___${image}`}
           type="button"
-          onClick={ handleClick }
+          onClick={handleClick}
         >
           Comprar
         </button>
-        <form onSubmit={ this.onSubmit }>
+        <form onSubmit={this.onSubmit}>
           <label htmlFor="email">
             Email
             <input
@@ -133,23 +138,23 @@ class ProductsDetails extends Component {
               id="email"
               type="email"
               name="email"
-              value={ email }
-              onChange={ this.onInputChange }
+              value={email}
+              onChange={this.onInputChange}
             />
           </label>
           {
             rating.map((rateValue) => (
               <label
-                key={ rateValue }
-                htmlFor={ `rate-${rateValue}` }
+                key={rateValue}
+                htmlFor={`rate-${rateValue}`}
               >
                 <input
-                  data-testid={ `${rateValue}-rating` }
-                  id={ `rate-${rateValue}` }
+                  data-testid={`${rateValue}-rating`}
+                  id={`rate-${rateValue}`}
                   type="radio"
-                  value={ rateValue }
-                  checked={ rateValue <= rate }
-                  onChange={ this.onClickRating }
+                  value={rateValue}
+                  checked={rateValue <= rate}
+                  onChange={this.onClickRating}
                 />
               </label>
             ))
@@ -162,8 +167,8 @@ class ProductsDetails extends Component {
               id="description"
               type="text"
               name="description"
-              value={ description }
-              onChange={ this.onInputChange }
+              value={description}
+              onChange={this.onInputChange}
             />
           </label>
           <button
@@ -175,11 +180,12 @@ class ProductsDetails extends Component {
         </form>
         <div>
           { savedEval.map((item) => (
-            <div key={ item.email }>
+            <div key={item.email}>
               <p>{ item.email }</p>
               <p>{ item.rate }</p>
               <p>{ item.description }</p>
-            </div>))}
+            </div>
+          ))}
         </div>
       </div>
     );

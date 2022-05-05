@@ -24,7 +24,7 @@ class ShoppingCart extends Component {
     this.setState({
       products: productsFiltered,
     });
-  }
+  };
 
   render() {
     const { products } = this.state;
@@ -43,13 +43,13 @@ class ShoppingCart extends Component {
           ) : (
             products.map((product) => (
               <CartItem
-                key={ product.id }
-                id={ product.id }
-                name={ product.title }
-                price={ product.price }
-                image={ product.thumbnail }
-                availability={ product.availability }
-                deleteProduct={ this.deleteProduct }
+                key={product.id}
+                id={product.id}
+                name={product.title}
+                price={product.price}
+                image={product.thumbnail}
+                availability={product.availability}
+                deleteProduct={this.deleteProduct}
               />
             ))
           )
