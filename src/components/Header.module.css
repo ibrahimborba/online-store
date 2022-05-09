@@ -1,7 +1,6 @@
 .header {
   color: var(--lighest);
   display: flex;
-  height: 80px;
   justify-content: space-between;
   margin: 0 auto;
   width: 90vw;

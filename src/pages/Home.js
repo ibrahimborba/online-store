@@ -4,6 +4,7 @@ import * as api from '../services/api';
 import Categories from '../components/Categories';
 import ItemCard from '../components/ItemCard';
 import Header from '../components/Header';
+import styles from './Home.module.css';
 
 class Home extends Component {
   constructor() {
@@ -64,25 +65,28 @@ class Home extends Component {
     const { categories, query, searchedList } = this.state;
     const { handleClick, cartProducts } = this.props;
     return (
-      <div>
-        <Header cartProducts={cartProducts} />
-        <label htmlFor="search">
-          <input
-            id="search"
-            type="text"
-            data-testid="query-input"
-            onChange={this.onInputChange}
-            value={query}
-          />
-          <button
-            type="button"
-            data-testid="query-button"
-            onClick={this.onClickSearchButton}
-          >
-            Pesquisar
-          </button>
-        </label>
-        { query.length === 0
+      <div className={styles.appBody}>
+        <Header cartProducts={cartProducts} className={styles.appBody_header} />
+        <section className={styles.appBody_main}>
+          <section className={styles.main_search}>
+            <label htmlFor="search">
+              <input
+                id="search"
+                type="text"
+                data-testid="query-input"
+                onChange={this.onInputChange}
+                value={query}
+              />
+              <button
+                type="button"
+                data-testid="query-button"
+                onClick={this.onClickSearchButton}
+              >
+                Pesquisar
+              </button>
+            </label>
+          </section>
+          { query.length === 0 && searchedList.length === 0
           && (
             <p
               data-testid="home-initial-message"
@@ -90,7 +94,28 @@ class Home extends Component {
               Digite algum termo de pesquisa ou escolha uma categoria.
             </p>
           )}
-        <aside>
+          <section className={styles.main_results}>
+            { query.length !== 0
+            && searchedList.length === 0
+              ? <p>Nenhum produto foi encontrado</p>
+              : (
+                searchedList.map((item) => (
+                  <ItemCard
+                    key={item.id}
+                    id={item.id}
+                    name={item.title}
+                    image={item.thumbnail}
+                    price={item.price}
+                    avaibleQuant={item.available_quantity}
+                    freeShipping={item.shipping.free_shipping}
+                    data-testid="product"
+                    handleClick={handleClick}
+                  />
+                ))
+              )}
+          </section>
+        </section>
+        <aside className={styles.appBody_categories}>
           <p>Categorias</p>
           <ul>
             {categories.map((category) => (
@@ -103,24 +128,6 @@ class Home extends Component {
             ))}
           </ul>
         </aside>
-        { query.length !== 0
-          && searchedList.length === 0
-          ? <p>Nenhum produto foi encontrado</p>
-          : (
-            searchedList.map((item) => (
-              <ItemCard
-                key={item.id}
-                id={item.id}
-                name={item.title}
-                image={item.thumbnail}
-                price={item.price}
-                avaibleQuant={item.available_quantity}
-                freeShipping={item.shipping.free_shipping}
-                data-testid="product"
-                handleClick={handleClick}
-              />
-            ))
-          )}
       </div>
     );
   }
