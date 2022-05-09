@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styles from './Categories.module.css';
 
 class Categories extends Component {
   render() {
@@ -10,6 +11,7 @@ class Categories extends Component {
         data-testid="category"
         type="button"
         onClick={handleClick}
+        className={styles.btnCategory}
       >
         {category.name}
       </button>

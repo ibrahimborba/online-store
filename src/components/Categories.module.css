@@ -1,0 +1,6 @@
+.btnCategory {
+  background-color: var(--lighest);
+  border: 0;
+  padding: 7px;
+  cursor: pointer;
+}
