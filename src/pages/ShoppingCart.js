@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import CartItem from '../components/CartItem';
+import Header from '../components/Header';
 
 class ShoppingCart extends Component {
   constructor() {
@@ -28,11 +29,10 @@ class ShoppingCart extends Component {
 
   render() {
     const { products } = this.state;
+    const { cartProducts } = this.props;
     return (
       <div>
-        <Link to="/">
-          <p>Voltar</p>
-        </Link>
+        <Header cartProducts={cartProducts} />
         {
           products.length === 0 ? (
             <h2

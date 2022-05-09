@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import CartItem from '../components/CartItem';
 import CheckoutInput from '../components/CheckoutInput';
+import Header from '../components/Header';
 
 class Checkout extends Component {
   constructor() {
@@ -31,12 +31,9 @@ class Checkout extends Component {
       address,
     } = this.state;
     const { cartProducts } = this.props;
-
     return (
       <div>
-        <Link to="/">
-          <p>Voltar</p>
-        </Link>
+        <Header cartProducts={cartProducts} />
         {
           cartProducts.map((product) => (
             <CartItem
