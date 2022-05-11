@@ -21,11 +21,12 @@
 
 .header_cart_quant {
   margin-top: 8px;
-  width: 28px;
-  height: 28px;
-  line-height: 28px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
   text-align: center;
   font-size: 14px;
+  font-weight: 700;
   background-color: var(--dark-gray);
   border-radius: 50%;
   color: var(--main-color);
