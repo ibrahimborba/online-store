@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import styles from './ItemCard.module.css';
 
 class ItemCard extends Component {
   render() {
@@ -14,15 +15,18 @@ class ItemCard extends Component {
       handleClick,
     } = this.props;
     return (
-      <div data-testid="product">
+      <div
+        data-testid="product"
+      >
         <Link
           to={`/productsDetails/${id}`}
           data-testid="product-detail-link"
+          className={styles.productCard}
         >
-          <div>{name}</div>
-          <img src={image} alt={name} />
-          <div>{price}</div>
-          { freeShipping && <p data-testid="free-shipping">Frete Grátis</p>}
+          <div className={styles.productCard_name}>{name}</div>
+          <img src={image} alt={name} className={styles.productCard_img} />
+          <div>{`R$ ${price}`}</div>
+          { freeShipping && <p data-testid="free-shipping"><b>Frete Grátis</b></p>}
         </Link>
         <button
           data-testid="product-add-to-cart"
@@ -30,6 +34,7 @@ class ItemCard extends Component {
           value={`${name}___${price}___${image}___${avaibleQuant}`}
           type="button"
           onClick={handleClick}
+          className={styles.productCard_btn}
         >
           Comprar
         </button>
