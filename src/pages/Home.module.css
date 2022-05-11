@@ -1,11 +1,12 @@
 .appBody {
   display: grid;
-  height: 100vh;
-  width: 100vw;
-  grid-template-columns: 20vw 80vw;
-  grid-template-rows: 20vh 80vh;
+  grid-template-columns: 20vw 70vw;
+  grid-template-rows: 15vh 85vh;
   grid-template-areas: "header header"
     "categories main";
+  grid-gap: 10px;
+
+  justify-content: space-around;
 }
 
 .appBody_header {
@@ -14,9 +15,15 @@
 
 .appBody_categories {
   grid-area: categories;
+  overflow-y: scroll;
+}
+
+.appBody_categories h2 {
+  font-weight: 700;
 }
 
 .appBody_main {
+  background-color: var(--lighest);
   grid-area: main;
   display: flex;
   flex-direction: column;
@@ -27,10 +34,27 @@
   grid-area: search;
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .main_results {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: .5fr;
+  grid-gap: 10px;
   justify-content: center;
+}
+
+/* Scrollbars customization */
+.appBody_categories::-webkit-scrollbar {
+  width: 5px;
+}
+
+.appBody_categories::-webkit-scrollbar-track {
+  background: var(--gray);
+}
+
+.appBody_categories::-webkit-scrollbar-thumb {
+  background: var(--dark-gray);
+  border-radius: 7px;
 }

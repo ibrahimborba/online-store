@@ -116,7 +116,7 @@ class Home extends Component {
           </section>
         </section>
         <aside className={styles.appBody_categories}>
-          <p>Categorias</p>
+          <h2>Categorias</h2>
           <ul>
             {categories.map((category) => (
               <li key={category.id}>
