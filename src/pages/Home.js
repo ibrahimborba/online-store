@@ -68,24 +68,24 @@ class Home extends Component {
       <div className={styles.appBody}>
         <Header cartProducts={cartProducts} className={styles.appBody_header} />
         <section className={styles.appBody_main}>
-          <section className={styles.main_search}>
-            <label htmlFor="search">
-              <input
-                id="search"
-                type="text"
-                data-testid="query-input"
-                onChange={this.onInputChange}
-                value={query}
-              />
-              <button
-                type="button"
-                data-testid="query-button"
-                onClick={this.onClickSearchButton}
-              >
-                Pesquisar
-              </button>
-            </label>
-          </section>
+          <label htmlFor="search" className={styles.main_search}>
+            <input
+              id="search"
+              type="text"
+              data-testid="query-input"
+              onChange={this.onInputChange}
+              value={query}
+              className={styles.main_search_input}
+            />
+            <button
+              type="button"
+              data-testid="query-button"
+              onClick={this.onClickSearchButton}
+              className={styles.main_search_btn}
+            >
+              Pesquisar
+            </button>
+          </label>
           { query.length === 0 && searchedList.length === 0
           && (
             <p

@@ -28,13 +28,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 30px;
 }
 
 .main_search {
   grid-area: search;
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 100vw;
+}
+
+.main_search_input {
+  height: 30px;
+  margin-bottom: 20px;
+  width: 40%;
+}
+
+.main_search_btn {
+  height: 30px;
+  margin-bottom: 20px;
+  background-color: var(--secondary-color);
+  border: 0;
+  color: var(--main-color);
+  padding: 7px;
+  cursor: pointer;
 }
 
 .main_results {
