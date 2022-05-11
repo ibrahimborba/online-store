@@ -40,8 +40,9 @@ class Header extends React.Component {
             YJVlufZSk6JZUcTSM9hKThIU2DZ0ZSCbKnI5HxtZxXlZ1EOEbHjEjE+Gv/L5s8P+
             mWDvnVHkz7B85TadzTpz337qWVnIwmkJkgsuwfmP7o+1cJrCT8WAAAAAElFTkSuQmCC"
             alt="Imagem do carrinho de compras"
+            className={styles.header_cart_img}
           />
-          <p data-testid="shopping-cart-size">{cartProducts.length}</p>
+          <p data-testid="shopping-cart-size" className={styles.header_cart_quant}>{cartProducts.length}</p>
         </Link>
       </header>
     );
