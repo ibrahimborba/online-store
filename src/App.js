@@ -1,25 +1,92 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import { Route, Switch } from 'react-router-dom';
+import Home from './pages/Home';
+import ShoppingCart from './pages/ShoppingCart';
+import ProductsDetails from './pages/ProductsDetails';
+import Checkout from './pages/Checkout';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      cartProductsIds: [],
+      cartProducts: JSON.parse(localStorage.getItem('cartProducts')) || [],
+    };
+  }
+
+  handleClick = async (event) => {
+    const { target } = event;
+    const { value } = target;
+    const targetValuesArr = value.split('___');
+    const product = {
+      id: target.id,
+      title: targetValuesArr[0],
+      price: Number(targetValuesArr[1]),
+      thumbnail: targetValuesArr[2],
+      availability: Number(targetValuesArr[3]),
+    };
+
+    this.setState((prevState) => {
+      const newProducts = [...prevState.cartProducts, product];
+      localStorage.setItem('cartProducts', JSON.stringify(newProducts));
+      return {
+        cartProductsIds: [...prevState.cartProductsIds, target.id],
+        cartProducts: newProducts,
+      };
+    });
+  };
+
+  render() {
+    const { cartProductsIds, cartProducts } = this.state;
+    return (
+      <Switch>
+        <Route
+          path="/productsDetails/:id"
+          render={(props) => (
+            <ProductsDetails
+              {...props}
+              handleClick={this.handleClick}
+              cartProducts={cartProducts}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/shoppingCart"
+          render={(props) => (
+            <ShoppingCart
+              {...props}
+              cartProductsIds={cartProductsIds}
+              cartProducts={cartProducts}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/checkout"
+          render={(props) => (
+            <Checkout
+              {...props}
+              cartProductsIds={cartProductsIds}
+              cartProducts={cartProducts}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/"
+          render={(props) => (
+            <Home
+              {...props}
+              handleClick={this.handleClick}
+              cartProducts={cartProducts}
+            />
+          )}
+        />
+      </Switch>
+    );
+  }
 }
 
 export default App;

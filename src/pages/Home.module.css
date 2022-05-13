@@ -1,0 +1,77 @@
+.appBody {
+  display: grid;
+  grid-template-columns: 20vw 70vw;
+  grid-template-rows: 15vh 85vh;
+  grid-template-areas: "header header"
+    "categories main";
+  grid-gap: 10px;
+
+  justify-content: space-around;
+}
+
+.appBody_header {
+  grid-area: header;
+}
+
+.appBody_categories {
+  grid-area: categories;
+  overflow-y: scroll;
+}
+
+.appBody_categories h2 {
+  font-weight: 700;
+}
+
+.appBody_main {
+  background-color: var(--lighest);
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.main_search {
+  grid-area: search;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+.main_search_input {
+  height: 30px;
+  margin-bottom: 20px;
+  width: 40%;
+}
+
+.main_search_btn {
+  height: 30px;
+  margin-bottom: 20px;
+  background-color: var(--secondary-color);
+  border: 0;
+  color: var(--main-color);
+  padding: 7px;
+  cursor: pointer;
+}
+
+.main_results {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: .5fr;
+  grid-gap: 10px;
+  justify-content: center;
+}
+
+/* Scrollbars customization */
+.appBody_categories::-webkit-scrollbar {
+  width: 5px;
+}
+
+.appBody_categories::-webkit-scrollbar-track {
+  background: var(--gray);
+}
+
+.appBody_categories::-webkit-scrollbar-thumb {
+  background: var(--dark-gray);
+  border-radius: 7px;
+}
